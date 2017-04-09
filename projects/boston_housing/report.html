@@ -14569,6 +14569,7 @@ AAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
+<p>The maximum depth of 1 suffer from high bias, the score it get in the graph is low on the training set.</p>
 <p>The maximum depth of 10 suffer from high variance, this is easily noticed by comparing the validation score (~0.7) to the training score (~1), getting a higher error on the test set implies high variance. It also have a wider shaded region.</p>
 
 </div>
@@ -14641,7 +14642,8 @@ AAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> k-fold if a validation training technique that uses all data for training and validation. It does this by splitting the data in k subsamples, retaining a single subsample of k-size for testing the model. This process it is repeated k-times and average the results to get a single estimation.</p>
+<p><strong>Answer: </strong> 
+k-fold if a validation training technique that uses all data for training and validation. It does this by splitting the data in k subsamples, retaining a single subsample of k-size for testing the model and the remaining k-1 subsamples for training the model. This process it is repeated k-times and average the results to get a single estimation.</p>
 <p>If you do a single testing set there is a small probability even if the data is unordered and scramble the testing may be biased. By using all the data, you minimize this effect. Also if you tried different parameters with a single test set, this bias can affect the results. So mixing k-fold CV and Grid Search gets the benefit to training and test every data available leaving out whatever bias could influence the different parameters tested.</p>
 
 </div>

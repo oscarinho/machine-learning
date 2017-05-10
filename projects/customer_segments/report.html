@@ -12551,7 +12551,7 @@ AAAFIAQCAAAAKID/BxyiocD0tXWoAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Imports</span>
@@ -12570,7 +12570,7 @@ AAAFIAQCAAAAKID/BxyiocD0tXWoAAAAAElFTkSuQmCC
 <span class="c1">#Report the score of the prediction using the testing set</span>
 <span class="n">score_data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-    <span class="n">regressor</span> <span class="o">=</span>  <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+    <span class="n">regressor</span> <span class="o">=</span>  <span class="n">DecisionTreeRegressor</span><span class="p">()</span> <span class="c1"># for reviewer you get random values by default no need to add the random_state = i https://goo.gl/KgQPUW </span>
     <span class="n">regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
     <span class="n">score_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">regressor</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 
@@ -12589,7 +12589,7 @@ AAAFIAQCAAAAKID/BxyiocD0tXWoAAAAAElFTkSuQmCC
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.409891215822
+<pre>0.403310839305
 </pre>
 </div>
 </div>
@@ -12615,7 +12615,7 @@ AAAFIAQCAAAAKID/BxyiocD0tXWoAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The feature I tried to predict was Detergents_Paper getting an average score of ~0.41. The score is very low meaning the feature is relevant and independent of the other features. You can’t predict Detergents with the other feature with enough accuracy to exclude it from the analysis.</p>
+<p>The features that exhibit some degree of correlation are Grocery and Detergent Paper, but not enough to exclude one or the other considering the score we got before. We can see in the graphics that the features are not normally distributed positively skewed.  This confirms the relevance of the feature since the R^2 values was not high and there is little correlation to the other features presented in the graph.</p>
 
 </div>
 </div>
@@ -15286,7 +15286,7 @@ MzMzMzMzs7b8P6YbhZeIVDkmAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>The features that exhibit some degree of correlation are Grocery and Detergent Paper, but not enough to exclude one or the other considering the score we got before. We can see in the graphics that the features are normally distributed positively skewed.</p>
+<p>The features that exhibit some degree of correlation are Grocery and Detergent Paper, but not enough to exclude one or the other considering the score we got before. We can see in the graphics that the features are not normally distributed positively skewed.  This confirms the relevance of the feature since the R^2 values was not high and there is little correlation to the other features presented in the graph.</p>
 
 </div>
 </div>
@@ -22792,7 +22792,8 @@ DP8HbiqkMuyMif0AAAAASUVORK5CYII=
 
 <pre><code>•    The first dimension has a good representation on: Milk, Grocery and Detergents Papers customer spending. With Detergents having a high positive emphasis, Milk and Grocery with smaller yet still positive emphasis. This kind of spending can represent a retailer. 
 •    The second dimension has a good representation on: Fresh, Frozen and Delicatessens customer spending with large positive emphasis. The other features are positive too, but really small compare to the: Fresh, Frozen and Delicatessens. These spending habits of the dimension can represent places that offer or sell food and consume but not sell the other features for their businesses.
-•    The third and fourth dimension only represent one feature each with no relevance to any spending habit a customer could have.</code></pre>
+•    The third dimension shows a negative correlation between Fresh (high positive weights) with Delicatessens (high negative weights). Meaning high spending in one of the categories will have low spending on the other. We can see this behavior in the first dimension too with lower weights. 
+•    The fourth dimension shows a negative correlation between Frozen (high positive weights) with Delicatessens (high negative weights). Meaning high spending in one of the categories will have low spending on the other. We can see this behavior in the first dimension too with lower weights. </code></pre>
 
 </div>
 </div>
@@ -24739,7 +24740,7 @@ AAAATBihHgAAAABMGKEeAAAAAEyY/x++ETenWb/sVgAAAABJRU5ErkJggg==
 <p><strong>Answer:</strong></p>
 <p>K-Means clustering algorithm is simple to implement and it works well with large data sets. It can produce a tighter cluster than hierarchical clustering. It is also easy to interpret the results.</p>
 <p>Gaussian Mixture Model clustering algorithm is more flexible compared to K-Means. Mixture models are more general than partitioning and fuzzy clustering. Clusters can be characterized by a small number of parameters</p>
-<p>Considering that with PCA we get 2 dimensions that represent the spending on all the features in my opinion the K-Means looks like a correct algorithm to use. With K=2.</p>
+<p>Considering that K-Means is fast and we can test different K really quickly I consider to be a better algorithms for our data set and try different values for the number of clusters.</p>
 
 </div>
 </div>
@@ -26084,8 +26085,8 @@ Ov4/qIVNqDqRgB0AAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Segment 0 could represent a market or place where you could buy or offer fruit and vegetables. This type of customer could also offer frozen meat, fish or chicken.</p>
-<p>Segment 1 could represent big retailers where you could buy a lot of different items.</p>
+<p>Segment 0 could represent a market or place where you could buy or eat fruit and vegetables. This type of customer could also offer frozen meat, fish or chicken. This based on Fresh and Froze, having a spending between the median and Q3 in this segment which is high compare to the other categories. This segment does represent high consumption of food.</p>
+<p>Segment 1 could represent big retailers where you could buy a lot of different items. The Milk, Grocery and Detergents are really high compare to the Q3 of each category. There is a lot of spending in these categories which in effect can represent a customer that offer products in these categories and sell them.</p>
 
 </div>
 </div>
@@ -26139,8 +26140,11 @@ Sample point 2 predicted to be in Cluster 1
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 
-<pre><code>-For sample 0 and 2 looks consistent with the prediction been market or retailers.
--For sample 1 it looks like it definitely offers food, maybe a gourmet restaurant.
+<pre><code>-Sample 0 is predicted to be in cluster 1. This customer has high spending in Milk, Grocery and Detergents by comparing each value to their respective mean. This falls in the Segment 1 of retailers. 
+
+-Sample 1 is predicted to be in cluster 1. This customer has high spending in Fresh, Frozen and Delicatessen by comparing each value to their respective mean. This falls in the Segment 1 of places that offer some type of food. This can be a restaurant that offers Gourmet food.
+
+-Sample 2 is predicted to be in cluster 0. This customer has high spending in Grocery and Detergents by comparing each value to their respective mean and the Milk category is close to the mean. This falls in the Segment 1 of retailers.
 
 </code></pre>
 <p>Overall, I think the predictions made were accurate considering the cluster each one is classify.</p>
@@ -26186,7 +26190,12 @@ Sample point 2 predicted to be in Cluster 1
 <p><strong>Answer:</strong></p>
 <p>I think retailers in Segment 1 can adapt for the 3 days a week delivery service. Regularly a retailer has warehouses to stock up any item. Now, the problem here can occur with the increase in the inventory and how it affects your financial results with cash flow.</p>
 <p>For Segment 0, I found it to be more difficult to adapt. Fresh foods are not items you can store easily and frozen products normally have limited space for storage.</p>
-<p>With this in mind, the A/B test could be done to the Segment 1 only and do it with equal probability in the two types of services where A is 5 days/week and B is 3 days/week. Important part here is to measure the performance and how well the customers respond to having 2 less days a week for delivers.  We can show the B client that bigger order comes with bigger trucks. Making it more efficient in transport and even saving some money (and CO2) in the process.</p>
+<p>With this in mind, the A/B test could be done to the Segment 1(retailers only) to validate the hypothesis if the 3 days a week have a positive impact in Customer Service and Operation Cost,   with the following process:</p>
+
+<pre><code>1.    Communicating randomly to 50% of the client in the segment that the delivery service is changing to 3 days/week.
+2.    We measure how well the customer receives the change. With positive of negative responses. This can be done with sentiment analysis over the customer mails with the help of Deep Learning techniques.
+3.    We measure whatever cost for the operation we save and show the customer the saving he or she gets for maximizing transport efficiency in dollars and CO2 footprint.
+4.    Finally with all the results validate the hypothesis.</code></pre>
 
 </div>
 </div>
